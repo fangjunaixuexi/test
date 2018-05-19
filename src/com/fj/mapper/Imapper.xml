@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fj.mapper.Imapper">
+	
+	<select id="finSection" parameterType="com.fj.model.Section"
+		resultType="com.fj.model.Section">
+		SELECT * FROM section;
+	</select>
+	<!-- 获得department的总条数 -->
+	<select id="findDepartTotalCount" resultType="int">
+		select count(*) from section;
+	</select>
+
+	<!-- 获得分页department的数据 -->
+	<select id="findDepartPageData" parameterType="com.fj.model.vo.PageBean"
+		resultType="com.fj.model.Section">
+		select * from section limit #{offset},#{currentCount};
+	</select>
+	<insert id="Addsection" parameterType="String">
+		INSERT INTO section(sname) VALUES (#{sname});
+	</insert>
+	<delete id="DeleteSection" parameterType="Integer">
+		delete from section where id=#{id};
+	</delete>
+	<select id="selectone" parameterType="Integer" resultType="com.fj.model.Section">
+		select * from section where id=#{id};
+	</select>
+	<update id="UpdataSection" parameterType="com.fj.model.Section">
+		update section set sname=#{sname} where id=#{id};
+	</update>
+	<select id="findName" parameterType="com.fj.model.User"
+		resultType="com.fj.model.User">
+		select * from user where name=#{name};
+	</select>
+</mapper>
